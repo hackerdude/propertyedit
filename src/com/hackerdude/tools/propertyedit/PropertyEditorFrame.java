@@ -5,6 +5,9 @@ import java.awt.event.*;
 import javax.swing.*;
 import com.hackerdude.tools.propertyedit.model.*;
 
+/**
+ * The Frame for the property editor sample application.
+ */
 public class PropertyEditorFrame extends JFrame {
 	JPanel contentPane;
 	JMenuBar jMenuBar1 = new JMenuBar();

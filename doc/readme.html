@@ -1,0 +1,64 @@
+<HTML>
+	<HEAD>
+
+		<TITLE>Property Editor</TITLE>
+
+	</HEAD>
+
+
+	<BODY>
+
+
+		<H1>Swing Property Editor</H1>
+
+	<P>
+		This project is a Swing UI for editing properties in a tree-like format,
+		using a series of metadata elements for determining datatypes, etcetera.
+
+		<P>For example, given the sample properties file:
+
+		<PRE>
+		world.continent.America.USA.Montana=Montana
+		world.continent.America=America
+		world.continent.Europe=Europe
+		world.continent.America.Mexico=Mexico
+		world.continent.America.Mexico.Morelos=Morelos
+		world.continent.America.USA=United States
+		world.continent.America.Canada=Canada, eh?
+		world.continent.Europe.Spain=Spain
+		world.continent.America.USA.Wisconsin=Wisconsin
+		world.continent.America.USA.California=California
+		</PRE>
+
+		<P>The property edit UI would create a tree with the structure:
+
+		<CENTER><IMG SRC="propertyedit.jpg"></CENTER>
+
+		<P>The property editor uses a metadata xml descriptor file
+		(<A HREF="../sample.metadata.xml">see sample</A>) for giving
+		extra information during the editing operations.
+
+		<P>In addition, the property editor can be used as a simple
+		control that you can pass a Properties object to. Under this
+		context, the Property editor uses an editor factories to display
+		the most appropriate editor for the value object even if it
+		is not a simple string.
+
+		<P>Currently implemented Editors include:</P>
+
+		<UL>
+			<LI>String Editor (standard)</LI>
+			<LI>Boolean value editor</LI>
+			<LI>Color Editor</LI>
+			<LI>Font Editor</LI>
+		</UL>
+
+		<H2>Licensing</H2>
+
+		<P>This program is licensed under the Lesser General Public License.
+		You are encouraged to submit any generic editors you would like me
+		to include in the program.
+
+	</BODY>
+
+</HTML>

@@ -20,6 +20,9 @@
   <property category="sys" name="Title" value="Property Editor SwingUI" />
   <property category="sys" name="Version" value="1.0" />
   <property category="sys" name="WorkingDirectory" value="." />
+  <node type="Folder" name="doc">
+    <file path="doc/readme.html" />
+  </node>
   <file path="PropertyEdit.html" />
   <file path="sample.metadata.xml" />
   <file path="sample.properties" />

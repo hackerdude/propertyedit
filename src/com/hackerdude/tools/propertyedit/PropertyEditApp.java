@@ -6,7 +6,8 @@ import com.hackerdude.tools.propertyedit.model.*;
 
 
 /**
- * This application is a sample on how to use the Property Editor.
+ * This sample application illustrates how to use the
+ * Property Editor.
  */
 public class PropertyEditApp {
 	boolean packFrame = false;

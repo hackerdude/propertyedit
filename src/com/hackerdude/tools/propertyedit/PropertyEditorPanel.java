@@ -8,15 +8,13 @@ import com.hackerdude.tools.propertyedit.model.*;
 
 
 /**
- * Title:        Property Editor SwingUI
- * Description:  A Swing UI to edit properties files in a tree-like format.
- * Copyright:    Copyright (c) 2001
- * Company:
+ * Property Editor panel.
+ *
  * @author David Martinez
  * @version 1.0
  */
-
 public class PropertyEditorPanel extends JPanel {
+/** @todo Wrap into a reusable JavaBean */
 	JSplitPane jSplitPane1 = new JSplitPane();
 	BorderLayout borderLayout1 = new BorderLayout();
 	PropertyItemEditorPanel pnlPropertyItemEditor = new PropertyItemEditorPanel();

@@ -11,13 +11,27 @@ import javax.swing.JPanel;
  * @version 1.0
  */
 
+/**
+ * This Factory can create a new property Editor panel depending on
+ * the data type class.
+ * <P>The factory is automatically called by the tree when there is a need
+ * to get a different property editor because the selection has changed. It is
+ * also useful by itself if you don't want the tree but want to use the
+ * editor panels.
+ */
 public class PropertyEditorFactory extends JPanel {
 
 	public PropertyEditorFactory() {
 	}
 
+	/**
+	 * Call this method with a fully qualified classname and the factory will
+	 * create the appropriate editor for the object.
+	 */
 	public static PropValueEditor createPropertyEditor(String dataTypeClass) {
+	/** @todo Implement factory data in a properties file.  */
 		if ( dataTypeClass == null ) return null;
+
 		if ( dataTypeClass.equals("java.awt.Color") || dataTypeClass.equals("javax.swing.plaf.ColorUIResource") ) {
 			return new ColorEditorPanel();
 		}

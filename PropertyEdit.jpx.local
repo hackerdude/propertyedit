@@ -14,5 +14,7 @@ debug.NoTracingClasses.8[0]=21 com.inprise.vbroker.*1  1 -1
 debug.NoTracingClasses.9[0]=9  com.sun.*1  1 -1
 debug.Watches.1[0]=1  18  itemNode10 expression -1
 editor.search.file_filter_history.1[0]=*.java
+history.files.active[0]=src/com/hackerdude/tools/propertyedit/editors/PropertyEditorFactory.java
+history.files.open.1[0]=src/com/hackerdude/tools/propertyedit/editors/PropertyEditorFactory.java,F;12,618
 sys.Author[0]=David Martinez
 sys.DefaultPackage[0]=com.hackerdude.tools.propertyedit.editors
