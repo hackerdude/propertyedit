@@ -1,0 +1,15 @@
+[PropertyInfo]
+childCount,int,false,false, , ,true,<default>
+childNodes,HashMap,false,false, , ,false,<default>
+childNodesList,ArrayList,false,false, , ,false,<default>
+children,Set,false,false, , ,true,<default>
+childrenNames,Set,false,false, , ,true,<default>
+dataTypeClass,String,false,false, , ,true,<default>
+nodeDescription,String,false,false, , ,true,<default>
+nodeName,String,false,false, , ,true,<default>
+nodeValue,Object,false,false, , ,false, 
+[IconNames]
+
+
+
+

@@ -1,0 +1,103 @@
+<?xml version="1.0"?>
+
+<!-- This is a property metadata file. This file defines the
+property metadata, such as polite names, data types, etc. -->
+<property-metadata>
+	<propertyfile>
+		<file-description>
+			This property file sample contains information about the world.
+
+			The keys specify geographic locations in a tree-like format,
+			from generic to particular.
+		</file-description>
+	</propertyfile>
+
+	<!-- The default section allows you to specify defaults for any property
+		that is not explicitly defined here -->
+	<default datatype="string">
+		<!-- This is the default description of a single property -->
+		<description>Geographic location</description>
+
+		<!-- This is the default description for a group of properties -->
+		<group-description>Geographic Locations</group-description>
+
+	</default>
+
+	<property name="world">
+		<group-description>The world</group-description>
+	</property>
+
+	<property name="world.continent">
+		<group-description>The continents</group-description>
+	</property>
+
+	<property name="world.continent.America">
+		<description>
+			America, rediscovered in 1492 by Christopher Columbus
+		</description>
+		<group-description>
+			Countries and Territories in the American continent.
+		</group-description>
+	</property>
+
+	<property name="world.continent.Mexico">
+		<group-description>
+			States within the Mexican republic.
+		</group-description>
+		<description>
+			Mexico, the country with the longest continous history on the
+			American continent. Originally the empire of the Mexica (Aztecs),
+			it was conquered by Hernan Cortez in 1521 and became the seat of
+			government for the Spanish holdings in America, which extended
+			from Oregon to Tierra del Fuego.
+
+			Started a declaration of of independence and slave freedom in 1810,
+			sparking the war of independence, which ended in victory and
+			recognition of Mexico's independence in 1821.
+
+			Mexico suffered a bloody history of war after that, which included
+			civil wars, secession (Guatemala first, then Texas), foreign
+			invasions (by Napoleonic France and the United States), and finally
+			a full-scale revolution in 1910. The revolution ended in 1921 with the
+			establishment of a state party, called the PNR first and then
+			renamed the PRI. This party stayed on by instituting a mock
+			democracy with rigged elections for over 70 years, which corrupted
+			the government but at least allowed for an
+			extended period of peace.
+
+			In 1999 the party was toppled in free and peaceful elections,
+			promising a new beginning for the country. The PRI party today
+			remains an important, if ideology-lacking political force.
+		</description>
+	</property>
+
+	<property name="world.continent.USA">
+		<description>
+			The United States of America. The world's most stable democratic
+			republic, and biggest world power. Referred to by the english-speaking
+			world simply as "America".
+
+			Originally a collection of 13 British and dutch colonies ruled by
+			Great Britain, the colonies were formed mostly by christian
+			congregations like Quakers, Puritans and Catholics fleeing religious
+			persecution in europe. When there was nothing but bare land, the
+			colonists started their own small governments basing themselves on
+			british Common Law. After the colonies reached a certain size and
+			importance, the British levied heavy taxes and restrictions on the
+			colonies without local representation, violating the 12th century's
+			Magna Carta - the basic law of all the British countries -
+			established by King Richard.
+
+			This galvanized the dreams of independence of the seemingly
+			disparate colonies against a common enemy. A declaration of
+			independence was signed in 1776, starting the war of Independence.
+
+			With the support of France and Spain (enemies of Britain at the
+			time), the United States achieved recognition within Europe and was
+			able to trade with European partners early.
+
+
+		</description>
+	</property>
+
+</property-metadata>
