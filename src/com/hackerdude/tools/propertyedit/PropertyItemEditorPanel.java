@@ -1,10 +1,16 @@
 package com.hackerdude.tools.propertyedit;
 
-import com.hackerdude.tools.propertyedit.model.*;
-import com.hackerdude.tools.propertyedit.editors.*;
-import java.awt.*;
-import javax.swing.*;
-import java.util.*;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.util.ArrayList;
+import java.util.Iterator;
+
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+import com.hackerdude.tools.propertyedit.editors.PropValueEditor;
+import com.hackerdude.tools.propertyedit.editors.PropertyEditorFactory;
+import com.hackerdude.tools.propertyedit.model.PropertyEditorNode;
 
 /**
  * Title:        Property Editor SwingUI

@@ -1,8 +1,9 @@
 package com.hackerdude.tools.propertyedit;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
+
 import javax.swing.UIManager;
-import java.awt.*;
-import com.hackerdude.tools.propertyedit.model.*;
 
 
 /**

@@ -1,10 +1,18 @@
 package com.hackerdude.tools.propertyedit;
 
-import javax.swing.*;
-import java.awt.*;
-import javax.swing.tree.*;
-import javax.swing.event.*;
-import com.hackerdude.tools.propertyedit.model.*;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JSplitPane;
+import javax.swing.JTree;
+import javax.swing.event.TreeSelectionEvent;
+import javax.swing.event.TreeSelectionListener;
+import javax.swing.tree.TreePath;
+
+import com.hackerdude.tools.propertyedit.model.PropertyEditorModel;
+import com.hackerdude.tools.propertyedit.model.PropertyEditorNode;
 
 
 /**

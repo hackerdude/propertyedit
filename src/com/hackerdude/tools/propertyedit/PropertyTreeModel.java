@@ -1,9 +1,15 @@
 package com.hackerdude.tools.propertyedit;
 
-import javax.swing.tree.*;
-import javax.swing.event.*;
-import com.hackerdude.tools.propertyedit.model.*;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Iterator;
+
+import javax.swing.event.TreeModelEvent;
+import javax.swing.event.TreeModelListener;
+import javax.swing.tree.TreeModel;
+import javax.swing.tree.TreePath;
+
+import com.hackerdude.tools.propertyedit.model.PropertyEditorModel;
+import com.hackerdude.tools.propertyedit.model.PropertyEditorNode;
 
 /**
  * Title:        Property Editor SwingUI

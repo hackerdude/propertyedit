@@ -1,9 +1,28 @@
 package com.hackerdude.tools.propertyedit;
 
-import java.awt.*;
-import java.awt.event.*;
-import javax.swing.*;
-import com.hackerdude.tools.propertyedit.model.*;
+import java.awt.AWTEvent;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.Point;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+
+import javax.swing.AbstractAction;
+import javax.swing.Action;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JPanel;
+import javax.swing.JToolBar;
+
+import com.hackerdude.tools.propertyedit.model.PropertyEditorModel;
+import com.hackerdude.tools.propertyedit.model.PropertyEditorModelFactory;
 
 /**
  * The Frame for the property editor sample application.
@@ -114,9 +133,9 @@ public class PropertyEditorFrame extends JFrame {
 			if ( fChooser.showDialog(null, "Open") == JFileChooser.APPROVE_OPTION ) {
 				String fileName = fChooser.getSelectedFile().getAbsolutePath();
 
-				PropertyEditorModelFactory fac = new PropertyEditorModelFactory();
+//				PropertyEditorModelFactory fac = new PropertyEditorModelFactory();
 				try {
-					PropertyEditorModel model = fac.createPropertyEditorModel(fileName);
+					PropertyEditorModel model = PropertyEditorModelFactory.createPropertyEditorModel(fileName);
 					pnlPropertyEditor.jTree1.setModel(new PropertyTreeModel(model));
 				} catch ( java.io.IOException exc ) {
 					exc.printStackTrace();
