@@ -1,6 +1,5 @@
 package com.hackerdude.tools.propertyedit.editors;
 
-import javax.swing.JPanel;
 
 /**
  * Title:        Property Editor SwingUI

@@ -63,9 +63,8 @@ public class PropertyEditorModelFactory {
 
 	public static void main(String[] args ) {
 		String fileName = "sample.properties";
-		PropertyEditorModelFactory fac = new PropertyEditorModelFactory();
 		try {
-			PropertyEditorModel model = fac.createPropertyEditorModel(fileName);
+			PropertyEditorModel model = PropertyEditorModelFactory.createPropertyEditorModel(fileName);
 		} catch ( java.io.IOException exc ) {
 			exc.printStackTrace();
 		}
