@@ -16,7 +16,7 @@
 
 	<property file="${user.home}/.ant.properties"/>
 	<property file="${user.home}/.propertyedit.build.properties"/>
-	<property name="version" value="0.9"/>
+	<property name="propertyedit.version" value="0.9"/>
 
 	<property name="src.dir" value="src"/>
 	<property name="lib.dir" value="lib"/>
@@ -25,7 +25,7 @@
 	<property name="build.javadocs" value="${build.dir}/javadocs"/>
 	<property name="build.tests" value="${build.dir}/testcases"/>
 	<property name="temp.dir" value="tmp"/>
-	<property name="jar.file.name" value="propertyedit-${version}.jar"/>
+	<property name="jar.file.name" value="propertyedit-${propertyedit.version}.jar"/>
 	<property name="dist.dir" value="dist"/>
 
 	<path id="propertyedit_classpath">
@@ -34,7 +34,8 @@
 	 </fileset>
 	 <pathelement path="${java.class.path}"/>
 	</path>
-
+	
+	<tstamp/>
 	
 	<!-- ================================= 
           target: jar              
@@ -45,7 +46,7 @@
 			<manifest>
 				<attribute name="Main-Class" value="com.hackerdude.tools.propertyedit.PropertyEditApp" />
 				<attribute name="Implementation-Title" value="propertyedit" />
-				<attribute name="Implementation-Version" value="${version} ${TODAY}" />
+				<attribute name="Implementation-version" value="${propertyedit.version} ${TODAY}" />
 				<attribute name="Implementation-Vendor" value="Hackerdude.com" />
 			</manifest>
         </jar>
