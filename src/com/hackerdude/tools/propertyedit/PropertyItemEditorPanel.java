@@ -13,16 +13,10 @@ import com.hackerdude.tools.propertyedit.editors.PropertyEditorFactory;
 import com.hackerdude.tools.propertyedit.model.PropertyEditorNode;
 
 /**
- * Title:        Property Editor SwingUI
- * Description:  A Swing UI to edit properties files in a tree-like format.
- * Copyright:    Copyright (c) 2001
- * Company:
- * @author David Martinez
- * @version 1.0
+ * 
+ * 
+ * @author davidm <a href="mailto:davidm@yourdomain.com">davidm@yourdomain.com</a>
  */
-
-
-
 public class PropertyItemEditorPanel extends JPanel {
 
 
@@ -69,8 +63,11 @@ public class PropertyItemEditorPanel extends JPanel {
 
 	private void readNodeValues() {
 		if ( itemNode == null ) return;
-		lblNodeName.setText(itemNode.getNodeName());
-		lblNodeDescription.setText("<HTML><P>"+itemNode.getNodeDescription());
+		String nodeName = itemNode.getNodeName();
+		lblNodeName.setText(nodeName==null?"":nodeName);
+		String textDescription = itemNode.getNodeDescription();
+		if ( textDescription == null ) textDescription = "";
+		lblNodeDescription.setText("<HTML><P>"+textDescription);
 		currentEditor = null;
 
 		if ( itemNode.getDataTypeClass() != null ) {

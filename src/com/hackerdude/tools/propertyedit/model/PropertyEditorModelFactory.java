@@ -13,7 +13,8 @@ import java.io.*;
 public class PropertyEditorModelFactory {
 
 	public static PropertyEditorModel createPropertyEditorModel(String propertyFileName) throws IOException {
-		PropertyEditorModel model = new PropertyEditorModel(propertyFileName);
+		String modelName = new File(propertyFileName).getName();
+		PropertyEditorModel model = new PropertyEditorModel(modelName);
 		Properties props = getProperties(propertyFileName);
 
 		HashMap propsMetaData = new HashMap();

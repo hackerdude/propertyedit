@@ -31,9 +31,9 @@ public class StringEditor extends PropValueEditorBase {
 	}
 	private void jbInit() throws Exception {
 		jPanel1.setLayout(gridBagLayout1);
-		lblNewValue.setDisplayedMnemonic('V');
 		lblNewValue.setLabelFor(txValueField);
 		lblNewValue.setText("Value: ");
+		lblNewValue.setDisplayedMnemonic('V');
 		this.setPreferredSize(new Dimension(100, 38));
 		jPanel1.setMaximumSize(new Dimension(2147483647, 400));
 		jPanel1.setPreferredSize(new Dimension(100, 21));

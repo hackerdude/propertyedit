@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.awt.event.WindowEvent;
 import java.io.FileOutputStream;
 import java.util.Properties;
@@ -35,9 +36,9 @@ private static final String WINDOW_TITLE = "Property Editor";
 	JPanel contentPane;
 	JMenuBar menuBar = new JMenuBar();
 	JMenu mnuFile = new JMenu();
-	JMenuItem jMenuFileExit = new JMenuItem();
+	JMenuItem mnuFileExit = new JMenuItem();
 	JMenu mnuHelp = new JMenu();
-	JMenuItem jMenuHelpAbout = new JMenuItem();
+	JMenuItem mnuHelpAbout = new JMenuItem();
 	JToolBar toolBar = new JToolBar();
 	JLabel statusBar = new JLabel();
 	BorderLayout borderLayout1 = new BorderLayout();
@@ -80,15 +81,19 @@ private static final String WINDOW_TITLE = "Property Editor";
 		this.setTitle(WINDOW_TITLE);
 		statusBar.setText(" ");
 		mnuFile.setText("File");
-		jMenuFileExit.setText("Exit");
-		jMenuFileExit.addActionListener(new ActionListener()  {
+		mnuFile.setMnemonic(KeyEvent.VK_F);
+		mnuFileExit.setText("Exit");
+		mnuFileExit.setMnemonic(KeyEvent.VK_X);
+
+		mnuFileExit.addActionListener(new ActionListener()  {
 			public void actionPerformed(ActionEvent e) {
 				jMenuFileExit_actionPerformed(e);
 			}
 		});
 		mnuHelp.setText("Help");
-		jMenuHelpAbout.setText("About");
-		jMenuHelpAbout.addActionListener(new ActionListener()  {
+		mnuHelp.setMnemonic(KeyEvent.VK_H);
+		mnuHelpAbout.setText("About");
+		mnuHelpAbout.addActionListener(new ActionListener()  {
 			public void actionPerformed(ActionEvent e) {
 				jMenuHelpAbout_actionPerformed(e);
 			}
@@ -102,11 +107,11 @@ private static final String WINDOW_TITLE = "Property Editor";
 		toolBar.add(openButton);
 		toolBar.add(saveButton);
 		//toolBar.add(helpButton);
-		mnuFile.add(ACTION_FILEOPEN);
-		mnuFile.add(ACTION_FILESAVE);
-		mnuFile.add(ACTION_FILESAVEAS);
-		mnuFile.add(jMenuFileExit);
-		mnuHelp.add(jMenuHelpAbout);
+		mnuFile.add(ACTION_FILEOPEN).setMnemonic(KeyEvent.VK_O);
+		mnuFile.add(ACTION_FILESAVE).setMnemonic(KeyEvent.VK_S);
+		mnuFile.add(ACTION_FILESAVEAS).setMnemonic(KeyEvent.VK_A);
+		mnuFile.add(mnuFileExit);
+		mnuHelp.add(mnuHelpAbout);
 		menuBar.add(mnuFile);
 		menuBar.add(mnuHelp);
 		setJMenuBar(menuBar);
