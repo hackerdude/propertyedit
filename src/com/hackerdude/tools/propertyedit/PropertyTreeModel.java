@@ -77,4 +77,12 @@ public class PropertyTreeModel implements TreeModel  {
 			listener.treeNodesChanged(ev);
 		}
 	}
+	
+	
+	/**
+	 * @return Returns the propEditorModel.
+	 */
+	public PropertyEditorModel getPropEditorModel() {
+		return propEditorModel;
+	}
 }

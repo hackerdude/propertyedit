@@ -12,29 +12,30 @@ import javax.swing.UIManager;
  */
 public class PropertyEditApp {
 	boolean packFrame = false;
+	private PropertyEditorFrame propertyEditorFrame;
 
 	/**Construct the application*/
 	public PropertyEditApp() {
-		PropertyEditorFrame frame = new PropertyEditorFrame();
+		propertyEditorFrame = new PropertyEditorFrame();
 		//Validate frames that have preset sizes
 		//Pack frames that have useful preferred size info, e.g. from their layout
 		if (packFrame) {
-			frame.pack();
+			propertyEditorFrame.pack();
 		}
 		else {
-			frame.validate();
+			propertyEditorFrame.validate();
 		}
 		//Center the window
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		Dimension frameSize = frame.getSize();
+		Dimension frameSize = propertyEditorFrame.getSize();
 		if (frameSize.height > screenSize.height) {
 			frameSize.height = screenSize.height;
 		}
 		if (frameSize.width > screenSize.width) {
 			frameSize.width = screenSize.width;
 		}
-		frame.setLocation((screenSize.width - frameSize.width) / 2, (screenSize.height - frameSize.height) / 2);
-		frame.setVisible(true);
+		propertyEditorFrame.setLocation((screenSize.width - frameSize.width) / 2, (screenSize.height - frameSize.height) / 2);
+		propertyEditorFrame.setVisible(true);
 	}
 	/**Main method*/
 	public static void main(String[] args) {
@@ -45,6 +46,11 @@ public class PropertyEditApp {
 		catch(Exception e) {
 			e.printStackTrace();
 		}
-		new PropertyEditApp();
+		PropertyEditApp propertyEditApp = new PropertyEditApp();
+		if (args.length>0 ) {
+			String fileName = args[0];
+			propertyEditApp.propertyEditorFrame.openFile(fileName);
+		}
+		
 	}
 }

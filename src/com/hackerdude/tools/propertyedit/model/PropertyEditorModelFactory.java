@@ -3,6 +3,13 @@ package com.hackerdude.tools.propertyedit.model;
 import java.util.*;
 import java.io.*;
 
+/**
+ * A factory for property editor models. 
+ * It can read them from regular property files, obtain their metadata and 
+ * create the trees.
+ *  
+ * @author davidm <a href="mailto:davidm@yourdomain.com">davidm@yourdomain.com</a>
+ */
 public class PropertyEditorModelFactory {
 
 	public static PropertyEditorModel createPropertyEditorModel(String propertyFileName) throws IOException {
@@ -49,7 +56,10 @@ public class PropertyEditorModelFactory {
 
 	private static Properties getProperties(String propertyFileName) throws IOException {
 		Properties props = new Properties();
-		props.load(new FileInputStream(propertyFileName));
+		FileInputStream fileInputStream = new FileInputStream(propertyFileName);
+		try {
+			props.load(fileInputStream);
+		} finally  { fileInputStream.close(); }
 		return props;
 	}
 
@@ -57,7 +67,11 @@ public class PropertyEditorModelFactory {
 		Properties metaDataProps = new Properties();
 		String metaFileName = propertyFileName+".metadata";
 		FileInputStream metaFile = new FileInputStream(metaFileName);
-		metaDataProps.load(metaFile);
+		try {
+			metaDataProps.load(metaFile);
+		} finally {
+			metaFile.close();
+		}
 		return new HashMap(metaDataProps);
 	}
 

@@ -22,15 +22,14 @@ import com.hackerdude.tools.propertyedit.model.PropertyEditorNode;
  * @version 1.0
  */
 public class PropertyEditorPanel extends JPanel {
-/** @todo Wrap into a reusable JavaBean */
-	JSplitPane jSplitPane1 = new JSplitPane();
-	BorderLayout borderLayout1 = new BorderLayout();
+	JSplitPane splitPane = new JSplitPane();
+	BorderLayout mainLayout = new BorderLayout();
 	PropertyItemEditorPanel pnlPropertyItemEditor = new PropertyItemEditorPanel();
 	PropertyEditorModel dataModel;
 
 	TreeSelectionListener TREE_SELECTION_LISTENER = new PropertyItemTreeSelectionListener();
-	JScrollPane jScrollPane1 = new JScrollPane();
-	JTree jTree1 = new JTree();
+	JScrollPane scrollPane = new JScrollPane();
+	JTree propertyTree = new JTree();
 
 	public PropertyEditorPanel() {
 		try {
@@ -42,15 +41,15 @@ public class PropertyEditorPanel extends JPanel {
 	}
 
 	private void jbInit() throws Exception {
-		this.setLayout(borderLayout1);
-		jTree1.addTreeSelectionListener(TREE_SELECTION_LISTENER);
-		jScrollPane1.setMinimumSize(new Dimension(150, 24));
-		jScrollPane1.setPreferredSize(new Dimension(150, 324));
-		this.add(jSplitPane1,  BorderLayout.CENTER);
-		jSplitPane1.add(pnlPropertyItemEditor, JSplitPane.RIGHT);
-		jSplitPane1.add(jScrollPane1, JSplitPane.LEFT);
-		jScrollPane1.getViewport().add(jTree1, null);
-		jSplitPane1.setDividerLocation(200);
+		this.setLayout(mainLayout);
+		propertyTree.addTreeSelectionListener(TREE_SELECTION_LISTENER);
+		scrollPane.setMinimumSize(new Dimension(150, 24));
+		scrollPane.setPreferredSize(new Dimension(150, 324));
+		this.add(splitPane,  BorderLayout.CENTER);
+		splitPane.add(pnlPropertyItemEditor, JSplitPane.RIGHT);
+		splitPane.add(scrollPane, JSplitPane.LEFT);
+		scrollPane.getViewport().add(propertyTree, null);
+		splitPane.setDividerLocation(200);
 	}
 
 	public PropertyEditorNode getItemEditorModel() {
@@ -72,7 +71,7 @@ public class PropertyEditorPanel extends JPanel {
 
 	public void setModel(PropertyEditorModel model) {
 		dataModel = model;
-		jTree1.setModel(new PropertyTreeModel(dataModel));
+		propertyTree.setModel(new PropertyTreeModel(dataModel));
 	}
 
 	public PropertyEditorModel getModel() {
@@ -84,7 +83,7 @@ public class PropertyEditorPanel extends JPanel {
 	}
 
 	public JTree getTree() {
-		return jTree1;
+		return propertyTree;
 	}
 
 }

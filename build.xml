@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<!-- ====================================================================== 
+     Mar 18, 2005 9:32:30 AM                                                        
+
+     Property Editor    
+     An easy to use and extend property editor with metadata support
+                   
+     davidm                                                                
+     ====================================================================== -->
+<project name="Property Editor" default="jar">
+    <description>
+            An easy to use and extend property editor with metadata support
+    </description>
+
+	<property name="name" value="propertyedit"/>
+
+	<property file="${user.home}/.ant.properties"/>
+	<property file="${user.home}/.propertyedit.build.properties"/>
+	<property name="version" value="0.9"/>
+
+	<property name="src.dir" value="src"/>
+	<property name="lib.dir" value="lib"/>
+	<property name="build.dir" value="build"/>
+	<property name="build.classes" value="${build.dir}/classes"/>
+	<property name="build.javadocs" value="${build.dir}/javadocs"/>
+	<property name="build.tests" value="${build.dir}/testcases"/>
+	<property name="temp.dir" value="tmp"/>
+	<property name="jar.file.name" value="propertyedit-${version}.jar"/>
+	<property name="dist.dir" value="dist"/>
+
+	<path id="propertyedit_classpath">
+	 <fileset dir="${lib.dir}">
+	  <include name="*.jar"/>
+	 </fileset>
+	 <pathelement path="${java.class.path}"/>
+	</path>
+
+	
+	<!-- ================================= 
+          target: jar              
+         ================================= -->
+    <target name="jar" depends="compile" description="--> An easy to use and extend property editor with metadata support">
+		<mkdir dir="${dist.dir}"/>
+        <jar basedir="${build.classes}" jarfile="${dist.dir}/${jar.file.name}">
+			<manifest>
+				<attribute name="Main-Class" value="com.hackerdude.tools.propertyedit.PropertyEditApp" />
+				<attribute name="Implementation-Title" value="propertyedit" />
+				<attribute name="Implementation-Version" value="${version} ${TODAY}" />
+				<attribute name="Implementation-Vendor" value="Hackerdude.com" />
+			</manifest>
+        </jar>
+    </target>
+
+    <!-- - - - - - - - - - - - - - - - - - 
+          target: compile                      
+         - - - - - - - - - - - - - - - - - -->
+    <target name="compile">
+		<mkdir dir="${build.classes}"/>
+		<javac srcdir="${src.dir}" destdir="${build.classes}" debug="on" deprecation="off" optimize="on">
+			<classpath refid="propertyedit_classpath"/>
+		</javac>
+		<copy todir="${build.classes}">
+			<fileset dir="${src.dir}">
+				<exclude name="**/*.java"/>
+			</fileset>
+		</copy>
+    </target>
+
+</project>
+

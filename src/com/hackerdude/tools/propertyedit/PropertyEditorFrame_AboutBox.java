@@ -33,9 +33,10 @@ public class PropertyEditorFrame_AboutBox extends JDialog implements ActionListe
     FlowLayout flowLayout1 = new FlowLayout();
     GridLayout gridLayout1 = new GridLayout();
     String product = "Property Editor SwingUI";
-    String version = "1.0";
-    String copyright = "Copyright (c) 2001";
-    String comments = "A Swing UI to edit properties files in a tree-like format.";
+    String version = "1.1";
+    String copyright = "Copyright (c) 2001-2005, David Martinez.";
+    String comments = "A Swing UI to edit property files in a tree-like format.";
+    
     public PropertyEditorFrame_AboutBox(Frame parent) {
         super(parent);
         enableEvents(AWTEvent.WINDOW_EVENT_MASK);

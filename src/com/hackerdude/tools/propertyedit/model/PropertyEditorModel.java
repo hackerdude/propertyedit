@@ -48,5 +48,32 @@ public class PropertyEditorModel {
 		return thisNode;
 	}
 
+	
+	public Properties toProperties() {
+		Properties result = new Properties();
+		PropertyEditorNode rootNode = getRootNode();
+		addChildrenToProperties(result, rootNode);
+		return result;
+	}
+
+
+	/**
+	 * @param properties
+	 * @param parentNode
+	 */
+	private void addChildrenToProperties(Properties properties, PropertyEditorNode parentNode) {
+		Iterator iter = parentNode.getChildrenNames().iterator();
+		while ( iter.hasNext() ) {
+			String nextKey = (String)iter.next();
+			PropertyEditorNode node = parentNode.getChild(nextKey);
+			String propertyName = node.getFullPropertyName();
+			Object propertyValue = node.getNodeValue();
+			if (propertyValue != null ) {
+				properties.setProperty(propertyName, propertyValue.toString());
+			}
+			addChildrenToProperties(properties, node);
+			System.out.println(propertyName);
+		}
+	}
 
 }

@@ -7,6 +7,8 @@ import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
+import java.io.FileOutputStream;
+import java.util.Properties;
 
 import javax.swing.AbstractAction;
 import javax.swing.Action;
@@ -25,32 +27,43 @@ import com.hackerdude.tools.propertyedit.model.PropertyEditorModel;
 import com.hackerdude.tools.propertyedit.model.PropertyEditorModelFactory;
 
 /**
- * The Frame for the property editor sample application.
+ * The Frame for the property editor application.
  */
 public class PropertyEditorFrame extends JFrame {
+	
+private static final String WINDOW_TITLE = "Property Editor";
 	JPanel contentPane;
-	JMenuBar jMenuBar1 = new JMenuBar();
-	JMenu jMenuFile = new JMenu();
+	JMenuBar menuBar = new JMenuBar();
+	JMenu mnuFile = new JMenu();
 	JMenuItem jMenuFileExit = new JMenuItem();
-	JMenu jMenuHelp = new JMenu();
+	JMenu mnuHelp = new JMenu();
 	JMenuItem jMenuHelpAbout = new JMenuItem();
-	JToolBar jToolBar = new JToolBar();
-	JButton jButton1 = new JButton();
-	JButton jButton2 = new JButton();
-	JButton jButton3 = new JButton();
-	ImageIcon image1;
-	ImageIcon image2;
-	ImageIcon image3;
+	JToolBar toolBar = new JToolBar();
 	JLabel statusBar = new JLabel();
 	BorderLayout borderLayout1 = new BorderLayout();
 	PropertyEditorPanel pnlPropertyEditor = new PropertyEditorPanel();
 	JFileChooser fChooser = new JFileChooser(System.getProperty("user.dir"));
+	
+	private static final ImageIcon ICON_OPEN = new ImageIcon(PropertyEditorFrame.class.getResource("Open16.gif"));
+	private static final ImageIcon ICON_SAVE = new ImageIcon(PropertyEditorFrame.class.getResource("Save16.gif"));
+	private static final ImageIcon ICON_SAVE_AS = new ImageIcon(PropertyEditorFrame.class.getResource("SaveAs16.gif"));
+	private static final ImageIcon ICON_HELP = new ImageIcon(PropertyEditorFrame.class.getResource("Help16.gif"));
 
-	Action ACTION_FILEOPEN =new Action_FileOpen();
+	public final Action ACTION_FILEOPEN = new Action_FileOpen();
+	public final Action ACTION_FILESAVE = new Action_FileSave();
+	public final Action ACTION_FILESAVEAS = new Action_FileSaveAs();
 
+	JButton openButton = new JButton(ACTION_FILEOPEN);
+	JButton saveButton = new JButton(ACTION_FILESAVE);
+	//JButton helpButton = new JButton();
+
+	private String currentFileName = null;
+	
+	
 	/**Construct the frame*/
 	public PropertyEditorFrame() {
 		enableEvents(AWTEvent.WINDOW_EVENT_MASK);
+		fChooser.setAcceptAllFileFilterUsed(true);
 		try {
 			jbInit();
 		}
@@ -60,44 +73,44 @@ public class PropertyEditorFrame extends JFrame {
 	}
 	/**Component initialization*/
 	private void jbInit() throws Exception  {
-		image1 = new ImageIcon(com.hackerdude.tools.propertyedit.PropertyEditorFrame.class.getResource("openFile.gif"));
-		image2 = new ImageIcon(com.hackerdude.tools.propertyedit.PropertyEditorFrame.class.getResource("closeFile.gif"));
-		image3 = new ImageIcon(com.hackerdude.tools.propertyedit.PropertyEditorFrame.class.getResource("help.gif"));
 		//setIconImage(Toolkit.getDefaultToolkit().createImage(PropertyEditorFrame.class.getResource("[Your Icon]")));
 		contentPane = (JPanel) this.getContentPane();
 		contentPane.setLayout(borderLayout1);
 		this.setSize(new Dimension(400, 300));
-		this.setTitle("Property Editor");
+		this.setTitle(WINDOW_TITLE);
 		statusBar.setText(" ");
-		jMenuFile.setText("File");
+		mnuFile.setText("File");
 		jMenuFileExit.setText("Exit");
 		jMenuFileExit.addActionListener(new ActionListener()  {
 			public void actionPerformed(ActionEvent e) {
 				jMenuFileExit_actionPerformed(e);
 			}
 		});
-		jMenuHelp.setText("Help");
+		mnuHelp.setText("Help");
 		jMenuHelpAbout.setText("About");
 		jMenuHelpAbout.addActionListener(new ActionListener()  {
 			public void actionPerformed(ActionEvent e) {
 				jMenuHelpAbout_actionPerformed(e);
 			}
 		});
-		jButton1.setToolTipText("Open File");
-		jButton1.setAction(ACTION_FILEOPEN);
-		jButton2.setIcon(image2);
-		jButton2.setToolTipText("Close File");
-		jButton3.setIcon(image3);
-		jButton3.setToolTipText("Help");
-		jToolBar.add(jButton1);
-		jToolBar.add(jButton2);
-		jToolBar.add(jButton3);
-		jMenuFile.add(jMenuFileExit);
-		jMenuHelp.add(jMenuHelpAbout);
-		jMenuBar1.add(jMenuFile);
-		jMenuBar1.add(jMenuHelp);
-		this.setJMenuBar(jMenuBar1);
-		contentPane.add(jToolBar, BorderLayout.NORTH);
+		openButton.setText(null);
+		saveButton.setText(null);
+		openButton.setToolTipText("Open File");
+		saveButton.setToolTipText("Save File");
+		//helpButton.setIcon(ICON_HELP);
+		//helpButton.setToolTipText("Help");
+		toolBar.add(openButton);
+		toolBar.add(saveButton);
+		//toolBar.add(helpButton);
+		mnuFile.add(ACTION_FILEOPEN);
+		mnuFile.add(ACTION_FILESAVE);
+		mnuFile.add(ACTION_FILESAVEAS);
+		mnuFile.add(jMenuFileExit);
+		mnuHelp.add(jMenuHelpAbout);
+		menuBar.add(mnuFile);
+		menuBar.add(mnuHelp);
+		setJMenuBar(menuBar);
+		contentPane.add(toolBar, BorderLayout.NORTH);
 		contentPane.add(statusBar, BorderLayout.SOUTH);
 		contentPane.add(pnlPropertyEditor, BorderLayout.CENTER);
 	}
@@ -124,27 +137,86 @@ public class PropertyEditorFrame extends JFrame {
 	}
 
 
+	/**
+	 * 
+	 */
+	public void openFile(String fileName) {
+		try {
+			PropertyEditorModel model = PropertyEditorModelFactory.createPropertyEditorModel(fileName);
+			pnlPropertyEditor.propertyTree.setModel(new PropertyTreeModel(model));
+			pnlPropertyEditor.propertyTree.setSelectionPath(pnlPropertyEditor.propertyTree.getPathForRow(0));
+			currentFileName = fChooser.getSelectedFile().getAbsolutePath();
+			setTitle(WINDOW_TITLE+" - "+fChooser.getSelectedFile().getName());
+		} catch ( java.io.IOException exc ) {
+			exc.printStackTrace();
+		}
+	}
+
+	/**
+	 * Saves the document under the specified fileName.
+	 * @param fileName
+	 */
+	protected void saveDocument(String fileName) {
+		FileOutputStream fos = null;
+		try {
+			PropertyTreeModel treeModel = (PropertyTreeModel)pnlPropertyEditor.propertyTree.getModel();
+			Properties properties = treeModel.getPropEditorModel().toProperties();
+			fos = new FileOutputStream(fileName);
+			properties.save(fos, "# Edited by PropertyEdit.");
+		} catch ( java.io.IOException exc ) {
+			exc.printStackTrace();
+		} finally {
+			if ( fos != null ) try { fos.close(); } catch (Exception exc) {}
+		}
+	}
+
+
+	
 	class Action_FileOpen extends AbstractAction {
+
 		public Action_FileOpen() {
-			super("Open",image1);
+			super("Open",ICON_OPEN);
 		}
 
 		public void actionPerformed(ActionEvent ev) {
-			if ( fChooser.showDialog(null, "Open") == JFileChooser.APPROVE_OPTION ) {
-				String fileName = fChooser.getSelectedFile().getAbsolutePath();
-
-//				PropertyEditorModelFactory fac = new PropertyEditorModelFactory();
-				try {
-					PropertyEditorModel model = PropertyEditorModelFactory.createPropertyEditorModel(fileName);
-					pnlPropertyEditor.jTree1.setModel(new PropertyTreeModel(model));
-				} catch ( java.io.IOException exc ) {
-					exc.printStackTrace();
-				}
+			if ( fChooser.showDialog(PropertyEditorFrame.this, "Open") == JFileChooser.APPROVE_OPTION ) {
+				openFile(fChooser.getSelectedFile().getAbsolutePath());
 			}
-
 
 		}
 
 	}
 
+
+
+	class Action_FileSave extends AbstractAction {
+		public Action_FileSave() {
+			super("Save", ICON_SAVE);
+		}
+
+		public void actionPerformed(ActionEvent ev) {
+			
+			if ( currentFileName == null ) ACTION_FILESAVEAS.actionPerformed(ev);
+			else saveDocument(currentFileName);
+
+	}
+}
+	
+
+	class Action_FileSaveAs extends AbstractAction {
+		public Action_FileSaveAs() {
+			super("Save As..", ICON_SAVE_AS);
+		}
+
+		public void actionPerformed(ActionEvent ev) {
+			if ( fChooser.showDialog(PropertyEditorFrame.this, "Save") == JFileChooser.APPROVE_OPTION ) {
+				String fileName = fChooser.getSelectedFile().getAbsolutePath();
+				saveDocument(fileName);
+				currentFileName = fChooser.getSelectedFile().getAbsolutePath();
+				setTitle(WINDOW_TITLE+" - "+fChooser.getSelectedFile().getName());
+			}
+
+		}
+
+	}
 }
